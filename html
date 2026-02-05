@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Love you mommy <3</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    /* --- Base page --- */
+    body {
+      background: #000;
+      height: 100vh;
+      margin: 0;
+      overflow: hidden;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    }
+
+    /* --- Love words --- */
+    #ui .love {
+      position: absolute;
+      top: 50%;
+      left: 30%; 
+      /* Scaled margin: 153 * 0.9 = 137.7 */
+      margin: -137.7px 0 0 -137.7px;
+      --i: 1;
+    }
+
+    #ui .love_word {
+      color: #ea80b0;
+      /* Scaled font: 0.95rem * 0.9 = 0.85rem */
+      font-size: 0.85rem;
+      transform: translateY(-100%) rotateZ(-30deg);
+      text-shadow: 0 0 10px #fff;
+      letter-spacing: 2px;
+      white-space: nowrap;
+    }
+
+    #ui .love_horizontal {
+      animation: horizontal 10000ms infinite alternate ease-in-out;
+      animation-delay: calc(var(--i) * -300ms);
+    }
+    #ui .love_vertical {
+      animation: vertical 20000ms infinite linear;
+      animation-delay: calc(var(--i) * -300ms);
+    }
+
+    /* --- Animations (Scaled by another 10%) --- */
+    @keyframes horizontal {
+      from { transform: translateX(0px); }
+      to   { transform: translateX(275.4px); } /* 306 * 0.9 */
+    }
+
+    @keyframes vertical {
+      0%   { transform: translateY(110.16px); }   /* 122.4 * 0.9 */
+      10%  { transform: translateY(27.54px); }    /* 30.6 * 0.9 */
+      15%  { transform: translateY(2.75px); }     /* 3.06 * 0.9 */
+      18%  { transform: translateY(0px); }
+      20%  { transform: translateY(2.75px); }
+      22%  { transform: translateY(21.19px); }    /* 23.54 * 0.9 */
+      24%  { transform: translateY(39.34px); }    /* 43.71 * 0.9 */
+      25%  { transform: translateY(68.85px); }    /* 76.5 * 0.9 */
+      26%  { transform: translateY(39.34px); }
+      28%  { transform: translateY(21.19px); }
+      30%  { transform: translateY(2.75px); }
+      32%  { transform: translateY(0px); }
+      35%  { transform: translateY(2.75px); }
+      40%  { transform: translateY(27.54px); }
+      50%  { transform: translateY(110.16px); }
+      71%  { transform: translateY(262.28px); }   /* 291.42 * 0.9 */
+      72.5%{ transform: translateY(270px); }      /* 300 * 0.9 */
+      75%  { transform: translateY(275.4px); }    /* 306 * 0.9 */
+      77.5%{ transform: translateY(270px); }
+      79%  { transform: translateY(262.28px); }
+      100% { transform: translateY(110.16px); }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="ui"></div>
+
+  <script>
+    const N = 100;
+    const ui = document.getElementById('ui');
+
+    for (let i = 1; i <= N; i++) {
+      const love = document.createElement('div');
+      love.className = 'love';
+      love.style.setProperty('--i', i);
+
+      const h = document.createElement('div');
+      h.className = 'love_horizontal';
+
+      const v = document.createElement('div');
+      v.className = 'love_vertical';
+
+      const word = document.createElement('div');
+      word.className = 'love_word';
+      word.textContent = 'Will you be my valentine mommy <3';
+
+      v.appendChild(word);
+      h.appendChild(v);
+      love.appendChild(h);
+      ui.appendChild(love);
+    }
+  </script>
+</body>
+</html>
